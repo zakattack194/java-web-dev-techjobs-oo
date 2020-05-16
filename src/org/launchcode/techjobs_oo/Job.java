@@ -17,9 +17,14 @@ public class Job {
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
 
+    public Job() {
+        id = nextId;
+        nextId++;
+    }
 
-    public Job(int id, String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        this.id = id;
+
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+        this();
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -47,6 +52,16 @@ public class Job {
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
+    @Override
+    public String toString() {
+        return "\nID: " + this.getId()
+                + "\nName: " + this.getName()
+                + "\nEmployer: " + this.getEmployer().getValue()
+                + "\nLocation: " + this.getLocation().getValue()
+                + "\nPosition Type: " + this.getPositionType().getValue()
+                + "\nCore Competency: " + this.getCoreCompetency().getValue() + "\n";
+
+    }
 
 
     public int getId() {
