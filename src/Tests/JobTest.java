@@ -19,7 +19,7 @@ public class JobTest {
         jobOne = new Job();
         jobTwo = new Job();
         jobThree = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        jobFour = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        jobFour = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
     }
 
 
@@ -82,10 +82,25 @@ public class JobTest {
     public void testCoreCompetencyValue(){
         assertTrue(jobThree.getCoreCompetency().getValue() == "Persistence");
     }
+
     @Test
-    public void testToString(){
+    public void testToStringStartsWithBlankLine(){
+        assertTrue(jobThree.toString().startsWith("\n"));
+    }
+    @Test
+    public void testToStringEndsWithBlankLine(){
+        assertTrue(jobThree.toString().endsWith("\n"));
+    }
+    @Test
+    public void testToStringFull(){
         assertEquals(jobThree.toString(), "\nID: 3\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
 
     }
+    @Test
+    public void testToStringPartialEmpty(){
+        assertEquals(jobFour.toString(), "\nID: 4\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+
+    }
+
 
 }

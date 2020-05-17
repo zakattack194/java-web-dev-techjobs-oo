@@ -54,7 +54,7 @@ public class Job {
     //  and id.
     @Override
     public String toString() {
-        return "\nID: " + this.getId()
+                return "\nID: " + this.getId()
                 + "\nName: " + this.getName()
                 + "\nEmployer: " + this.getEmployer().getValue()
                 + "\nLocation: " + this.getLocation().getValue()
