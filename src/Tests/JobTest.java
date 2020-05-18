@@ -19,7 +19,7 @@ public class JobTest {
         jobOne = new Job();
         jobTwo = new Job();
         jobThree = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        jobFour = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        jobFour = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency());
     }
 
 
@@ -98,7 +98,7 @@ public class JobTest {
     }
     @Test
     public void testToStringPartialEmpty(){
-        assertEquals(jobFour.toString(), "\nID: 4\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+        assertEquals(jobFour.toString(), "\nID: 4\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Data not available\n");
 
     }
 
