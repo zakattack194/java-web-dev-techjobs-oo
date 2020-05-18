@@ -9,17 +9,19 @@ import org.launchcode.techjobs_oo.*;
 import static org.junit.Assert.*;
 
 public class JobTest {
-    Job jobOne;
-    Job jobTwo;
-    Job jobThree;
-    Job jobFour;
+    static Job jobOne;
+    static Job jobTwo;
+    static Job jobThree;
+    static Job jobFour;
+    static Job jobFive;
 
-    @Before
-    public void createJobObjects() {
+    @BeforeClass
+    public static void createJobObjects() {
         jobOne = new Job();
         jobTwo = new Job();
         jobThree = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        jobFour = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency());
+        jobFour = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency(""));
+        jobFive = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency(""));
     }
 
 
@@ -30,57 +32,21 @@ public class JobTest {
 
     }
 
-
-
     @Test
-    public void testIdClass(){
+    public void testJobConstructorSetsAllFields(){
         Integer I = jobThree.getId();
         assertTrue(I instanceof Integer);
-    }
-    @Test
-    public void testIdValue(){
         assertTrue(jobThree.getId() == 3);
-
-    }
-    @Test
-    public void testNameClass(){
         assertTrue(jobThree.getName() instanceof String);
-    }
-    @Test
-    public void testNameValue(){
-        assertTrue(jobThree.getName() == "Product tester");
-    }
-    @Test
-    public void testEmployerClass(){
+        assertTrue(jobThree.getName().equals("Product tester"));
         assertTrue(jobThree.getEmployer() instanceof Employer);
-    }
-    @Test
-    public void testEmployerValue(){
-        assertTrue(jobThree.getEmployer().getValue() == "ACME");
-    }
-    @Test
-    public void testLocationClass(){
+        assertTrue(jobThree.getEmployer().getValue().equals("ACME"));
         assertTrue(jobThree.getLocation() instanceof Location);
-    }
-    @Test
-    public void testLocationValue(){
-        assertTrue(jobThree.getLocation().getValue() == "Desert");
-    }
-    @Test
-    public void testPositionTypeClass(){
+        assertTrue(jobThree.getLocation().getValue().equals("Desert"));
         assertTrue(jobThree.getPositionType() instanceof PositionType);
-    }
-    @Test
-    public void testPositionTypeValue(){
-        assertTrue(jobThree.getPositionType().getValue() == "Quality control");
-    }
-    @Test
-    public void testCoreCompetencyClass(){
+        assertTrue(jobThree.getPositionType().getValue().equals("Quality control"));
         assertTrue(jobThree.getCoreCompetency() instanceof CoreCompetency);
-    }
-    @Test
-    public void testCoreCompetencyValue(){
-        assertTrue(jobThree.getCoreCompetency().getValue() == "Persistence");
+        assertTrue(jobThree.getCoreCompetency().getValue().equals("Persistence"));
     }
 
     @Test
@@ -93,14 +59,18 @@ public class JobTest {
     }
     @Test
     public void testToStringFull(){
-        assertEquals(jobThree.toString(), "\nID: 3\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n");
+        assertEquals("\nID: 3\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n",jobThree.toString() );
 
     }
     @Test
     public void testToStringPartialEmpty(){
-        assertEquals(jobFour.toString(), "\nID: 4\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Data not available\n");
+        assertEquals("\nID: 4\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Data not available\n", jobFour.toString());
 
     }
+    @Test
+    public void testJobsForEquality(){
+        assertFalse(jobFour.equals(jobFive));
 
+    }
 
 }
